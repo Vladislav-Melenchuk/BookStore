@@ -1,0 +1,35 @@
+﻿body {
+    background-color: #DFD0B8;
+    color: #222831;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#cartItemsContainer .card {
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.8rem rgba(0,0,0,0.1);
+}
+
+#cartItemsContainer img {
+    border-radius: 0.5rem;
+}
+
+.qty-input {
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.empty-cart img {
+    max-width: 200px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+    .empty-cart img:hover {
+        transform: scale(1.05);
+    }
+
+.empty-cart h5 {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}

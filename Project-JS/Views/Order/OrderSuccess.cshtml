@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Успешное оформление";
+    Layout = "_Layout";
+}
+
+<style>
+    .order-success-wrapper {
+        min-height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #222831;
+        padding: 30px 15px;
+    }
+
+    .order-success-card {
+        background-color: #393E46;
+        padding: 40px 30px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 600px;
+        color: #DFD0B8;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    }
+
+        .order-success-card h2 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .order-success-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .order-success-card .btn {
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid #948979;
+            color: #DFD0B8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            .order-success-card .btn:hover {
+                background-color: #DFD0B8;
+                color: #222831;
+                border-color: #DFD0B8;
+            }
+
+</style>
+
+<div class="order-success-wrapper">
+    <div class="order-success-card">
+        <h2>✅ Дякуємо за замовлення!</h2>
+        <p>Ми зв’яжемося з вами найближчим часом. Ви також можете переглянути каталог або історію замовлень.</p>
+
+        <div class="mt-4 d-flex flex-column flex-sm-row justify-content-center gap-3">
+            <a href="/Catalog" class="btn btn-outline-light">← Назад до каталогу</a>
+            <a href="/Account/MyOrders" class="btn btn-outline-light">📦 Мої замовлення</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    localStorage.removeItem("cart");
+</script>

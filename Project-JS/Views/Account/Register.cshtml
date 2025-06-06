@@ -1,0 +1,59 @@
+﻿@model Project_JS.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Реєстрація";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="register-wrapper row shadow-lg rounded-4 overflow-hidden animate-fade-in">
+        <!-- Картинка -->
+        <div class="col-md-6 d-none d-md-block p-0">
+            <img src="~/img/loginIMG.jpg" class="img-fluid h-100 w-100 object-fit-cover" alt="Реєстрація">
+        </div>
+
+        <!-- Форма -->
+        <div class="col-md-6 bg-light p-5 d-flex flex-column justify-content-center">
+            <div class="mb-4">
+                <h1 class="text-center fw-bold">Створіть акаунт</h1>
+                <p class="text-center text-muted">Заповніть форму для реєстрації</p>
+            </div>
+
+            <form asp-action="Register" method="post" id="registerForm" novalidate>
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label fw-semibold">Ім’я користувача</label>
+                    <input asp-for="Username" class="form-control" placeholder="Введіть ім’я користувача" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label fw-semibold">Номер телефону</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="+38 (0XX) XXX-XX-XX" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-semibold">Пароль</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Введіть пароль" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-custom w-100">Зареєструватися</button>
+            </form>
+
+            <div class="mt-4 text-center d-flex flex-column gap-2">
+                <a href="/" class="btn btn-outline-secondary w-100">
+                    ← Назад на головну
+                </a>
+                <a href="/Account/Login" class="btn btn-outline-dark w-100">
+                    Увійти в акаунт
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/register-valid.js"></script>
+}
+

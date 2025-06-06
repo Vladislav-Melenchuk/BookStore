@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Project_JS.Models.Order>
+
+@{
+    ViewData["Title"] = "Мої замовлення";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/my-orders.css" asp-append-version="true" />
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-light">📦 Мої замовлення</h2>
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle rounded-4 overflow-hidden">
+                <thead class="table-header">
+                    <tr>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Сума</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                @{
+                                    string status = order.Status;
+                                    string statusText = status switch
+                                    {
+                                        "Pending" => "Очікує обробки",
+                                        "Completed" => "Завершено",
+                                        "Delivered" => "Доставлено",
+                                        "Cancelled" => "Скасовано",
+                                        _ => status
+                                    };
+                                }
+                                <span class="badge status-@status.ToLowerInvariant()">
+                                    @statusText
+                                </span>
+                            </td>
+                            <td>
+                                @if (order.Items != null && order.Items.Any())
+                                {
+                                    <strong>@order.Items.Sum(i => i.Quantity * i.Price).ToString("0.00") грн</strong>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">0.00 грн</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("OrderDetails", "Order", new { orderId = order.Id })"
+                                   class="btn btn-sm btn-outline-light">
+                                    🔍 Детальніше
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">У вас ще немає жодного замовлення.</p>
+    }
+</div>

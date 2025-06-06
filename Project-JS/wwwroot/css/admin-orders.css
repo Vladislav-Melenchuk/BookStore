@@ -1,0 +1,48 @@
+﻿.table-header {
+    background-color: #393E46;
+    color: #DFD0B8;
+    font-weight: 600;
+}
+
+.table td, .table th {
+    border-color: #2c2f36;
+    color: #DFD0B8;
+    vertical-align: middle;
+}
+
+.table-dark {
+    background-color: #222831;
+}
+
+.table-dark tbody tr:hover {
+    background-color: #2d323a;
+}
+
+.form-select {
+    border-radius: 10px;
+    background-color: #222831;
+    color: #DFD0B8;
+    border: 1px solid #948979;
+}
+
+.form-select option {
+    background-color: #393E46;
+    color: #DFD0B8;
+}
+
+#statusFilter {
+    border-radius: 12px;
+    background-color: #222831;
+    color: #DFD0B8;
+    border: 1px solid #948979;
+    padding: 6px 12px;
+}
+
+#statusFilter,
+#dateFrom,
+#dateTo {
+    background-color: #222831;
+    color: #DFD0B8;
+    border: 1px solid #948979;
+}
+

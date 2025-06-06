@@ -1,0 +1,58 @@
+﻿@model OrderFormViewModel
+
+@{
+    ViewData["Title"] = "Оформлення замовлення";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/order.css" asp-append-version="true" />
+
+<div class="checkout-container">
+    <h2 class="text-center">Оформлення замовлення</h2>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            Будь ласка, перевірте правильність заповнення форми.
+        </div>
+    }
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="FullName" class="form-label">ПІБ</label>
+            <input type="text" id="FullName" name="FullName" class="form-control" required
+                   placeholder="Наприклад: Іваненко Іван Іванович" />
+        </div>
+
+        <div class="mb-3">
+            <label for="Address" class="form-label">Адреса доставки</label>
+            <input type="text" id="Address" name="Address" class="form-control" required
+                   placeholder="Наприклад: Київ, відділення НП №5" />
+        </div>
+
+        <div class="mb-3">
+            <label for="PhoneNumber" class="form-label">Телефон</label>
+            <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" required
+                   pattern="^[0-9\s\-]{9,15}$"
+                   title="Введіть номер телефону без +380. Наприклад: 991234567"
+                   placeholder="Наприклад: 991234567" />
+        </div>
+
+        <div class="mb-3">
+            <label for="Email" class="form-label">Email</label>
+            <input type="email" id="Email" name="Email" class="form-control"
+                   placeholder="Наприклад: example@gmail.com"
+                   title="Введіть дійсну email-адресу (наприклад: name@example.com)" />
+        </div>
+
+        <div class="mb-3">
+            <label for="AdditionalNotes" class="form-label">Додаткові побажання</label>
+            <textarea id="AdditionalNotes" name="AdditionalNotes" class="form-control"
+                      placeholder="Наприклад: Зателефонуйте перед доставкою"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Оформити замовлення</button>
+    </form>
+</div>

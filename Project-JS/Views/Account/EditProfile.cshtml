@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Редактировать профиль";
+    Layout = "_Layout";
+}
+
+<h2 class="mb-4 text-center text-primary">Редактировать профиль</h2>
+
+<style>
+    form {
+        max-width: 450px;
+        margin: 0 auto;
+        background-color: #EFE5D9;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
+    }
+
+    label {
+        font-weight: 600;
+        color: #393E46;
+    }
+
+    h2 {
+        margin-top: 10rem;
+    }
+
+    input.form-control {
+        border-radius: 0.5rem;
+        border: 1.5px solid #948979;
+        padding: 0.5rem 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+        input.form-control:focus {
+            border-color: #393E46;
+            box-shadow: 0 0 5px rgba(57,62,70,0.5);
+        }
+
+    button.btn-primary {
+        background-color: #948979;
+        border-color: #948979;
+        width: 100%;
+        padding: 0.6rem;
+        font-weight: 600;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease;
+    }
+
+        button.btn-primary:hover {
+            background-color: #393E46;
+            border-color: #393E46;
+        }
+</style>
+
+<form method="post" novalidate>
+    <div class="mb-3">
+        <label for="Username">Имя пользователя</label>
+        <input type="text" id="Username" name="Username" class="form-control" value="@Model.Username" required />
+    </div>
+    <div class="mb-3">
+        <label for="PhoneNumber">Номер телефона</label>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" value="@Model.PhoneNumber" required />
+    </div>
+    <div class="mb-3">
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+</form>

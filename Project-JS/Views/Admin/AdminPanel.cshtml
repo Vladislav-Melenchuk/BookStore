@@ -1,0 +1,103 @@
+﻿@model List<Project_JS.Models.Book>
+
+@{
+    ViewData["Title"] = "Адмін-панель";
+    Layout = "_Layout";
+}
+
+<style>
+    .btn {
+        border-radius: 12px;
+        font-weight: 500;
+        padding: 10px 20px;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .btn-add-book {
+        background-color: #948979;
+        color: #222831;
+        border: none;
+    }
+
+        .btn-add-book:hover {
+            background-color: #dfd0b8;
+            color: #222831;
+        }
+
+    .btn-orders {
+        background-color: transparent;
+        color: #222831;
+        border: 1px solid #948979;
+    }
+
+        .btn-orders:hover {
+            background-color: #948979;
+            color: #222831;
+        }
+
+    .btn-sm {
+        margin:5px;
+        padding: 6px 12px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+</style>
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">📚 Адмін-панель</h1>
+
+    <div class="d-flex justify-content-end gap-3 mb-3">
+        <a href="/Admin/AddBook" class="btn btn-add-book">
+            <i class="bi bi-plus-circle me-1"></i> Додати книгу
+        </a>
+        <a href="/Admin/AdminOrders" class="btn btn-orders">
+            <i class="bi bi-card-checklist me-1"></i> Замовлення
+        </a>
+    </div>
+
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Автор</th>
+                        <th>Ціна</th>
+                        <th>Жанр</th>
+                        <th style="width: 160px">Дії</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var book in Model)
+                    {
+                        <tr>
+                            <td>@book.Title</td>
+                            <td>@book.Author</td>
+                            <td>@book.Price грн</td>
+                            <td>@book.Category</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary me-1" href="/Admin/EditBook/@book.Id">Редагувати</a>
+                                <a class="btn btn-sm btn-outline-danger" href="/Admin/DeleteBook/@book.Id"
+                                   onclick="return confirm('Ви впевнені, що хочете видалити цю книгу?');">Видалити</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">Каталог порожній. Додайте першу книгу!</div>
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@model Project_JS.Models.User
+
+@{
+    ViewData["Title"] = "Профіль";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/profile.css" />
+
+<div class="profile-background-wrapper">
+    <div class="profile-container container py-5 animate__animated animate__fadeIn">
+
+        <div class="profile-image-container text-center mb-4">
+            <img src="~/img/3.png" alt="Profile Header" class="profile-header-img rounded-4 shadow-sm" />
+        </div>
+
+        <div class="profile-card shadow-sm rounded-4 mx-auto p-5" style="max-width: 420px;">
+            <div class="profile-info text-center mb-4">
+                <h2 class="username mb-3">@Model.Username</h2>
+                <p class="phone mb-1"><strong>Телефон:</strong> @Model.PhoneNumber</p>
+                <form asp-action="Profile" method="post" class="email-form d-inline-block w-100 mt-3">
+                    <label for="emailInput" class="form-label mb-1">Email для розсилок (за бажанням)</label>
+                    <input type="email" id="emailInput" name="email" class="form-control" value="@Model.Email" placeholder="Введіть email" />
+                    <button type="submit" class="btn btn-custom mt-3 w-100">Зберегти</button>
+                </form>
+            </div>
+
+            <div class="profile-actions d-flex justify-content-between mt-4 flex-wrap gap-2">
+                <a href="/Account/ChangePassword" class="btn btn-outline-custom flex-grow-1">Змінити пароль</a>
+                <a href="/Account/EditProfile" class="btn btn-outline-custom flex-grow-1">Редагувати профіль</a>
+                <a href="/Account/MyOrders" class="btn btn-outline-custom flex-grow-1">Історія замовлень</a>
+            </div>
+        </div>
+    </div>
+</div>

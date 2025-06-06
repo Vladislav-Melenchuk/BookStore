@@ -1,0 +1,210 @@
+﻿body {
+    background-color: #DFD0B8;
+    color: #222831;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.navbar {
+    background-color: #222831 !important;
+    box-shadow: 0 2px 8px rgba(34,40,49,0.08);
+}
+
+.navbar-brand, .nav-link, .navbar-text {
+    color: #DFD0B8 !important;
+}
+
+    .nav-link:hover, .navbar-brand:hover {
+        color: #948979 !important;
+    }
+
+.banner {
+    background: linear-gradient(90deg, #393E46 60%, #948979 100%);
+    color: #DFD0B8;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 24px rgba(34,40,49,0.1);
+    width: 100%;
+}
+
+
+.btn-custom {
+    background-color: #948979;
+    color: #222831;
+    border: none;
+}
+
+    .btn-custom:hover {
+        background-color: #393E46;
+        color: #DFD0B8;
+    }
+
+.header-spacer {
+    height: 72px;
+}
+
+@media (max-width: 991.98px) {
+    .header-spacer {
+        height: 56px;
+    }
+}
+
+.footer {
+    background-color: #393E46;
+    color: #DFD0B8;
+}
+
+.footer-text {
+    color: black !important;
+}
+
+.banner-carousel .carousel-inner {
+    border-radius: 1rem;
+}
+
+.banner-carousel .carousel-item {
+    transition: opacity 0.5s;
+}
+
+.advantage-card {
+    background-color: #DFD0B8;
+    border: none;
+}
+
+    .advantage-card .card-title {
+        color: #222831;
+    }
+
+    .advantage-card .card-text {
+        color: #393E46;
+    }
+
+.image-carousel .carousel-inner {
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(34,40,49,0.08);
+}
+
+.image-carousel img,
+.img-fit {
+    width: 1314px;
+    height: 480px;
+    border-radius: 0;
+    margin: 0 auto; 
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .image-carousel img,
+    .img-fit {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+.about-card,
+.contacts-card {
+    background-color: #DFD0B8;
+    border: none;
+    border-radius: 1rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .about-card .card-body,
+    .contacts-card .card-body {
+        color: #222831;
+        font-size: 1.1rem;
+        padding: 2rem;
+
+    }
+
+    .contacts-card i {
+        color: #948979;
+        margin-right: 0.5rem;
+    }
+
+.contacts-list li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.contacts-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #94897922;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: #948979;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+    .contacts-icon i {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        text-align: center;
+        line-height: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+.contacts-list .fw-semibold {
+    color: #393E46;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    aspect-ratio: 2/3;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(34,40,49,0.10);
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.advantage-card,
+.about-card,
+.contacts-card {
+    background-color: #DFD0B8;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: 0 12px 48px rgba(34,40,49,0.65), 0 2px 16px rgba(34,40,49,0.45);
+}
+
+
+.section-bg {
+    background-color: #EFE5D9;
+    padding: 3rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.wide-section {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+#cart-count {
+    font-size: 0.75rem;
+    padding: 0.35em 0.6em;
+}
+
+
+
+

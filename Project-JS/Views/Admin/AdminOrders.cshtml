@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Project_JS.Models.Order>
+
+@{
+    ViewData["Title"] = "Управління замовленнями";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/admin-orders.css" asp-append-version="true" />
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">📦 Управління замовленнями</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <div class="mb-4 row g-3 align-items-end">
+        <div class="col-md-4 col-lg-3">
+            <label for="statusFilter" class="form-label">Статус замовлення</label>
+            <select id="statusFilter" class="form-select">
+                <option value="all">🔍 Всі замовлення</option>
+                <option value="Pending">🕓 В очікуванні</option>
+                <option value="Completed">✅ Завершено</option>
+                <option value="Delivered">📦 Доставлено</option>
+                <option value="Cancelled">❌ Скасовано</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <label for="sortDate" class="form-label">Сортувати за датою</label>
+            <select id="sortDate" class="form-select">
+                <option value="desc">🆕 Від нових до старих</option>
+                <option value="asc">📜 Від старих до нових</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <button class="btn btn-outline-secondary w-100 mt-4" id="clearFilters">Очистити фільтри</button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-hover align-middle rounded-4 overflow-hidden">
+            <thead class="table-header">
+                <tr>
+                    <th>№</th>
+                    <th>👤 Користувач</th>
+                    <th>📅 Дата</th>
+                    <th>📌 Статус</th>
+                    <th>🔧 Дії</th>
+                </tr>
+            </thead>
+            <tbody id="orderTableBody">
+                @foreach (var order in Model)
+                {
+                    <tr data-status="@order.Status">
+                        <td>@order.Id</td>
+                        <td>@order.User?.Username</td>
+                        <td>@order.OrderDate.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            <form asp-action="UpdateOrderStatus" asp-controller="Admin" method="post" class="d-flex flex-column">
+                                <input type="hidden" name="orderId" value="@order.Id" />
+                                <select name="status" class="form-select form-select-sm mb-2">
+                                    <option value="Pending" selected="@(order.Status == "Pending")">🕓 В очікуванні</option>
+                                    <option value="Completed" selected="@(order.Status == "Completed")">✅ Завершено</option>
+                                    <option value="Delivered" selected="@(order.Status == "Delivered")">📦 Доставлено</option>
+                                    <option value="Cancelled" selected="@(order.Status == "Cancelled")">❌ Скасовано</option>
+                                </select>
+                                <button type="submit" class="btn btn-outline-success btn-sm">Оновити</button>
+                            </form>
+                        </td>
+                        <td>
+                            <a href="/Admin/AdminOrderDetails/@order.Id" class="btn btn-outline-info btn-sm">🔍 Детальніше</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const statusFilter = document.getElementById("statusFilter");
+            const sortSelect = document.getElementById("sortDate");
+            const clearBtn = document.getElementById("clearFilters");
+            const tbody = document.getElementById("orderTableBody");
+
+            function parseDate(dateStr) {
+                const [day, month, yearTime] = dateStr.split(".");
+                const [year, time] = yearTime.split(" ");
+                return new Date(`${year}-${month}-${day}T${time}`);
+            }
+
+            function applyFiltersAndSort() {
+                const selectedStatus = statusFilter.value.toLowerCase();
+                const sortOrder = sortSelect.value;
+
+                let rows = Array.from(tbody.querySelectorAll("tr"));
+
+                rows.forEach(row => {
+                    const status = row.dataset.status?.toLowerCase() || "";
+                    const show = selectedStatus === "all" || status === selectedStatus;
+                    row.style.display = show ? "" : "none";
+                });
+
+                rows = rows.filter(row => row.style.display !== "none");
+
+                rows.sort((a, b) => {
+                    const dateA = parseDate(a.children[2].textContent.trim());
+                    const dateB = parseDate(b.children[2].textContent.trim());
+                    return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+            }
+
+            statusFilter.addEventListener("change", applyFiltersAndSort);
+            sortSelect.addEventListener("change", applyFiltersAndSort);
+            clearBtn.addEventListener("click", () => {
+                statusFilter.value = "all";
+                sortSelect.value = "desc";
+                applyFiltersAndSort();
+            });
+
+            document.querySelectorAll('select[name="status"]').forEach(select => {
+                select.addEventListener("change", (e) => {
+                    const row = e.target.closest("tr");
+                    if (row) row.dataset.status = e.target.value;
+                });
+            });
+
+            applyFiltersAndSort(); 
+        });
+    </script>
+}

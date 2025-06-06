@@ -1,0 +1,100 @@
+﻿@model Project_JS.Models.Order
+
+@{
+    ViewData["Title"] = "Деталі замовлення";
+    Layout = "_Layout";
+}
+
+<style>
+    .order-details-wrapper {
+        max-width: 960px;
+        margin: 50px auto;
+        background-color: #fff; 
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+        color: #222831;
+    }
+
+        .order-details-wrapper h2 {
+            font-weight: bold;
+            color: #222831;
+        }
+
+        .order-details-wrapper p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+            .order-details-wrapper p strong {
+                font-weight: 600;
+            }
+
+        .order-details-wrapper .table {
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .order-details-wrapper .table thead {
+                background-color: #e2e2e2;
+                color: #222831;
+            }
+
+            .order-details-wrapper .table td,
+            .order-details-wrapper .table th {
+                vertical-align: middle;
+                border-color: #ccc;
+            }
+
+        .order-details-wrapper .btn {
+            padding: 10px 20px;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+</style>
+
+<div class="order-details-wrapper">
+    <h2 class="mb-4">Деталі замовлення №@Model.Id</h2>
+
+    <p><strong>Користувач:</strong> @Model.User?.Username</p>
+    <p><strong>Дата замовлення:</strong> @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</p>
+    <p><strong>Статус:</strong> @Model.Status</p>
+    <p><strong>Адреса:</strong> @Model.Address</p>
+    <p><strong>Телефон:</strong> @Model.PhoneNumber</p>
+    <p><strong>Додаткові побажання:</strong> @Model.AdditionalNotes</p>
+
+    <h4 class="mt-4">Товари:</h4>
+
+    @if (Model.Items != null && Model.Items.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Кількість</th>
+                    <th>Ціна</th>
+                    <th>Сума</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price.ToString("0.00") грн</td>
+                        <td>@(item.Quantity* item.Price) грн</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Товари відсутні.</p>
+    }
+
+    <a href="/Admin/AdminOrders" class="btn btn-secondary mt-4">← Назад</a>
+</div>

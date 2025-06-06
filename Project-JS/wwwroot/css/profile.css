@@ -1,0 +1,119 @@
+﻿body {
+    background-color: #DFD0B8;
+    color: #222831;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-container {
+    min-height: 80vh;
+}
+
+.profile-card {
+    background-color: #393E46;
+    color: #DFD0B8;
+    border-radius: 1rem;
+    padding: 3rem 2.5rem;
+    user-select: none;
+}
+
+.username {
+    font-weight: 700;
+    font-size: 2.2rem;
+    user-select: text;
+    color: #DFD0B8;
+}
+
+.phone {
+    font-size: 1.1rem;
+    color: #948979;
+}
+
+.email-form input {
+    background-color: #DFD0B8;
+    border: 1.5px solid #948979;
+    border-radius: 0.5rem;
+    color: #222831;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.3s ease;
+}
+
+    .email-form input:focus {
+        border-color: #222831;
+        outline: none;
+        box-shadow: 0 0 10px #222831aa;
+    }
+
+.email-form button {
+    background-color: #948979;
+    border: none;
+    border-radius: 0.5rem;
+    color: #DFD0B8;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .email-form button:hover {
+        background-color: #222831;
+    }
+
+.profile-actions {
+    gap: 1rem;
+}
+
+.btn-outline-custom {
+    color: #948979;
+    border: 2px solid #948979;
+    font-weight: 600;
+    border-radius: 0.7rem;
+    transition: all 0.3s ease;
+    user-select: none;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+    .btn-outline-custom:hover {
+        background-color: #948979;
+        color: #DFD0B8;
+        border-color: #948979;
+    }
+
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+}
+
+.profile-image-container {
+    max-width: 420px;
+    margin: 0 auto 2rem auto;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 0.6rem 1.5rem rgba(0,0,0,0.2);
+}
+
+.profile-header-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+    .profile-header-img:hover {
+        transform: scale(1.05);
+    }
+
+
+.profile-background-wrapper {
+    background-image: url("/img/2.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 2rem 0;
+}

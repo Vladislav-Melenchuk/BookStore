@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="icon" type="image/png" href="~/img/open-book (2).png" />
+
+
+
+    <link rel="stylesheet" href="~/css/guest.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    
+    <nav class="navbar navbar-expand-lg fixed-top py-3 bg-light shadow-sm">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand fw-bold fs-4" href="/Home/Guest">BookStore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto align-items-center fs-5">
+                    <li class="nav-item"><a class="nav-link" href="/Catalog/Index">Каталог</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Home/Guest/#about">Про нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Home/Guest/#contacts">Контакти</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-center fs-5" id="user-nav">
+                    <li class="nav-item position-relative">
+                        <a class="nav-link" href="/Cart/Cart" id="cartIcon" style="position: relative;">
+                            <i class="bi bi-cart3" style="font-size: 1.6rem;"></i>
+                            <span class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                  id="cartCount"
+                                  style="font-size: 0.7rem; display:none;">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item guest-only">
+                        <a class="nav-link" href="/Account/Register"><i class="bi bi-person-plus"></i> Реєстрація</a>
+                    </li>
+                    <li class="nav-item guest-only">
+                        <a class="nav-link" href="/Account/Login"><i class="bi bi-box-arrow-in-right"></i> Вхід</a>
+                    </li>
+                    <li class="nav-item dropdown auth-only d-none">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> <span id="nav-username">Користувач</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/Account/Profile">Профіль</a></li>
+                            <li><a class="dropdown-item d-none" id="admin-link" href="/Admin/AdminPanel">Адмін-панель</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/Account/Logout">Вийти</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <main class="flex-grow-1 pt-5 mt-4">
+        @RenderBody()
+    </main>
+
+    
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container text-center">
+            <span class="footer-text">&copy; 2025 BookStore. Всі права захищені.</span>
+        </div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const username = '@Context.Session.GetString("Username")';
+        const isAdmin = '@Context.Session.GetString("IsAdmin")';
+
+
+        if (username && username !== '') {
+            sessionStorage.setItem("Username", username);
+        }
+        if (isAdmin && isAdmin !== '') {
+            sessionStorage.setItem("IsAdmin", isAdmin);
+        }
+    </script>
+    @if (ViewContext.RouteData.Values["action"]?.ToString() == "Login" &&
+        ViewContext.RouteData.Values["controller"]?.ToString() == "Account")
+    {
+        <script>
+            sessionStorage.removeItem("Username");
+            sessionStorage.removeItem("IsAdmin");
+        </script>
+    }
+    <script>
+        window.isUserLoggedIn = @(Context.Session.GetInt32("UserId") != null ? "true" : "false");
+    </script>
+    <script>
+        setInterval(() => {
+            fetch("/ping", { method: "GET" });
+        }, 180000);
+    </script>
+
+    <script src="~/js/user-avatar.js" asp-append-version="true"></script>
+
+</body>
+</html>

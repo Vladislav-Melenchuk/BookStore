@@ -1,0 +1,60 @@
+﻿.checkout-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    background-color: #393E46;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    color: #DFD0B8;
+}
+
+    .checkout-container h2 {
+        color: #DFD0B8;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .checkout-container .form-label {
+        font-weight: 500;
+        color: #DFD0B8;
+    }
+
+    .checkout-container .form-control {
+        border-radius: 12px;
+        padding: 10px 15px;
+        background-color: #222831;
+        border: 1px solid #948979;
+        color: #DFD0B8;
+        transition: border-color 0.2s ease-in-out;
+    }
+
+        .checkout-container .form-control:focus {
+            border-color: #DFD0B8;
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(223, 208, 184, 0.25);
+        }
+
+    .checkout-container textarea.form-control {
+        min-height: 100px;
+    }
+
+    .checkout-container button[type="submit"] {
+        padding: 12px;
+        font-weight: bold;
+        border-radius: 12px;
+        background-color: #948979;
+        color: #222831;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+        .checkout-container button[type="submit"]:hover {
+            background-color: #DFD0B8;
+            color: #222831;
+        }
+
+    .checkout-container .form-control::placeholder {
+        color: #DFD0B8;
+        opacity: 0.6;
+    }

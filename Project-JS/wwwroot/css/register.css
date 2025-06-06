@@ -1,0 +1,89 @@
+﻿body {
+    background-color: #DFD0B8;
+}
+
+.register-header {
+    background-color: #222831;
+    color: #DFD0B8;
+}
+
+
+.register-wrapper {
+    max-width: 900px;
+    border-radius: 1.5rem;
+    background-color: #EFE5D9;
+}
+
+label {
+    color: #393E46;
+}
+
+.form-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.75rem;
+}
+
+.btn-custom {
+    background-color: #948979;
+    color: #222831;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+}
+
+    .btn-custom:hover {
+        background-color: #393E46;
+        color: #DFD0B8;
+    }
+
+.object-fit-cover {
+    object-fit: cover;
+    height: 100%;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeSlideIn 0.8s ease;
+}
+
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    50% {
+        transform: translateX(6px);
+    }
+
+    75% {
+        transform: translateX(-6px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.4s ease;
+}
+

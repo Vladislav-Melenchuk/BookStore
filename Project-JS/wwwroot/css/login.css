@@ -1,0 +1,126 @@
+﻿body {
+    background-color: #DFD0B8;
+    overflow-x: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    body > main {
+        flex: 1;
+    }
+
+.login-header {
+    background-color: #222831;
+    color: #DFD0B8;
+}
+
+.login-layout {
+    background: linear-gradient(90deg, #222831 50%, #DFD0B8 50%);
+    padding: 0;
+}
+
+.login-left {
+    width: 50%;
+    min-height: 100vh;
+    background-color: #2a2f36;
+}
+
+
+.login-right {
+    width: 50%;
+    min-height: 100vh;
+    background: url('/img/login-bg.jpg') center center / cover no-repeat, #DFD0B8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background-color: #393E46;
+}
+
+.form-control {
+    background-color: #EFE5D9;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    color: #222831;
+}
+
+.btn-custom {
+    background-color: #948979;
+    color: #222831;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+    .btn-custom:hover {
+        background-color: #222831;
+        color: #DFD0B8;
+    }
+
+/* Анімації */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-left {
+    opacity: 0;
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.animate-delay-1 {
+    animation-delay: 0.2s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
+.shake {
+    animation: shake 0.3s ease;
+}
+
+/* === Адаптивність (опціонально) === */
+@media (max-width: 768px) {
+    .login-layout {
+        flex-direction: column;
+        background: #DFD0B8;
+    }
+
+    .login-left,
+    .login-right {
+        width: 100%;
+        max-height: none;
+    }
+
+    .login-left {
+        padding: 1.5rem;
+    }
+
+    .login-right {
+        background: #DFD0B8;
+    }
+}

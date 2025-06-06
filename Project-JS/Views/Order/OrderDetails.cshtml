@@ -1,0 +1,111 @@
+﻿@model Project_JS.Models.Order
+
+@{
+    ViewData["Title"] = "Деталі замовлення";
+    Layout = "_Layout";
+}
+
+@functions {
+    string TranslateStatus(string status)
+    {
+        return status switch
+        {
+            "Pending" => "🕓 В очікуванні",
+            "Completed" => "✅ Завершено",
+            "Delivered" => "📦 Доставлено",
+            "Cancelled" => "❌ Скасовано",
+            _ => status
+        };
+    }
+
+    string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Pending" => "bg-warning text-dark",
+            "Completed" => "bg-success",
+            "Delivered" => "bg-primary",
+            "Cancelled" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+<style>
+    .order-details-card {
+        background-color: #393E46;
+        color: #DFD0B8;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .table thead th {
+        background-color: #2c2f36;
+        color: #DFD0B8;
+        border: none;
+    }
+
+    .table td {
+        color: #DFD0B8;
+        border-top: 1px solid #2c2f36;
+    }
+</style>
+
+<div class="container py-5 d-flex justify-content-center">
+    <div class="order-details-card w-100" style="max-width: 720px">
+        <h3 class="mb-4">
+            <i class="bi bi-journal-check me-2 text-success"></i>
+            Деталі замовлення №@Model.Id
+        </h3>
+
+        <p><strong>📅 Дата:</strong> @Model.OrderDate.ToString("dd.MM.yyyy HH:mm")</p>
+        <p>
+            <strong>📌 Статус:</strong>
+            <span class="badge @GetStatusBadgeClass(Model.Status)">
+                @TranslateStatus(Model.Status)
+            </span>
+        </p>
+        <p><strong>📍 Адреса:</strong> @Model.Address</p>
+        <p><strong>📞 Телефон:</strong> @Model.PhoneNumber</p>
+
+        <hr class="my-4" />
+
+        <h5 class="mb-3">🛒 Товари у замовленні:</h5>
+
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            <table class="table table-dark table-hover rounded overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Кількість</th>
+                        <th>Ціна</th>
+                        <th>Сума</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price.ToString("0.00") грн</td>
+                            <td>@(item.Price * item.Quantity) грн</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="text-end fs-5 fw-bold mt-3">
+                Загальна сума: @Model.Items.Sum(i => i.Price * i.Quantity).ToString("0.00") грн
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">Немає товарів у замовленні.</p>
+        }
+
+        <a href="/Account/MyOrders" class="btn btn-outline-light mt-4">← Назад до замовлень</a>
+    </div>
+</div>

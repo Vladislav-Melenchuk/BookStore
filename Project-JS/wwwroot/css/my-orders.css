@@ -1,0 +1,43 @@
+﻿.table - header {
+    background - color: #393E46;
+    color: #DFD0B8;
+    font - weight: 600;
+}
+
+.table td, .table th {
+    border-color: #2c2f36;
+    color: #DFD0B8;
+}
+
+.table - dark {
+    background - color: #222831;
+}
+
+.table - dark tbody tr:hover {
+    background-color: #2d323a;
+}
+
+.badge {
+    font-size: 0.9rem;
+padding: 5px 10px;
+border - radius: 12px;
+font - weight: 500;
+}
+
+/* Статусы */
+.status - платиться, .status - pending {
+    background - color: #948979;
+    color: #222831;
+}
+
+.status - доставлено, .status - delivered {
+    background - color: #28a745;
+}
+
+.status - скасовано, .status - cancelled {
+    background - color: #dc3545;
+}
+
+.status - завершено, .status - completed {
+    background - color: #17a2b8;
+}

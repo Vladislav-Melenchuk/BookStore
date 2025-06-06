@@ -1,0 +1,50 @@
+﻿@model Project_JS.Models.Book
+
+@{
+    ViewData["Title"] = "Редагувати книгу";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/catalog.css" />
+
+<div class="container py-5">
+    <h2 class="mb-4 text-center">Редагувати книгу</h2>
+
+    <form asp-action="EditBook" asp-controller="Admin" method="post" enctype="multipart/form-data" class="row g-3">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-md-6">
+            <label class="form-label">Назва</label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Автор</label>
+            <input asp-for="Author" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Категорія</label>
+            <input asp-for="Category" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Ціна (грн)</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Опис</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="col-12">
+            <label class="form-label">Нове зображення (не обов'язково)</label>
+            <input type="file" name="ImageFile" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="col-12 text-center mt-3">
+            <button type="submit" class="btn btn-warning px-5">Оновити книгу</button>
+        </div>
+    </form>
+</div>
